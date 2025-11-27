@@ -22,3 +22,5 @@ const InsightStatCard = ({ label, value, description, trend = 'steady' }: Insigh
 
 export default InsightStatCard;
 
+
+

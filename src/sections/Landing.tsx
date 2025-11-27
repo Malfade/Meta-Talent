@@ -13,6 +13,21 @@ const highlights = [
   { label: 'Комьюнити', value: 'клубы Бишкек' },
 ];
 
+const onboardingSteps = [
+  {
+    title: 'Пройди мини-тест',
+    description: 'Ответь на 6 вопросов и посмотри процент попадания в роль.',
+  },
+  {
+    title: 'Получай персональный план',
+    description: 'Листай карточки, открывай модалки с материалами и стартуй обучение.',
+  },
+  {
+    title: 'Запишись в клуб',
+    description: 'Выбери клуб в Бишкеке или онлайн. Кнопка “Присоединиться” показывает анимацию.',
+  },
+];
+
 const Landing = () => {
   const [activeUsers, setActiveUsers] = useState(432);
 
@@ -24,8 +39,8 @@ const Landing = () => {
   }, []);
 
   return (
-    <section className="space-y-16">
-      <div className="grid gap-10 md:grid-cols-2">
+    <section className="mx-auto max-w-6xl space-y-16 px-4 pb-20 pt-10 sm:px-6 lg:px-0">
+      <div className="grid items-center gap-10 lg:grid-cols-2">
         <div className="space-y-8">
           <p className="rounded-full bg-white/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-muted">
             Meta Talent · MVP
@@ -53,9 +68,12 @@ const Landing = () => {
               </GradientButton>
             </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex snap-x gap-4 overflow-x-auto sm:grid sm:grid-cols-2 sm:overflow-visible">
             {highlights.map((item) => (
-              <div key={item.label} className="rounded-2xl bg-white/70 px-4 py-3 shadow-sm backdrop-blur">
+              <div
+                key={item.label}
+                className="min-w-[220px] rounded-2xl bg-white/70 px-4 py-3 shadow-sm backdrop-blur sm:min-w-0"
+              >
                 <p className="text-xs text-muted">{item.label}</p>
                 <p className="text-sm font-semibold text-brand-dark">{item.value}</p>
               </div>
@@ -106,74 +124,70 @@ const Landing = () => {
       </div>
 
       <div className="rounded-[32px] bg-white/80 p-6 shadow-lg md:p-10">
-      <SectionHeading
-        align="center"
-        eyebrow="онбординг за 3 шага"
-        title="Тест · Роадмап · Комьюнити"
-        description="Мобильный UX с плавными свайпами, поясняющими карточками и живыми анимациями дает ощущение настоящего приложения."
-      />
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {['Пройди мини-тест', 'Получай персональный план', 'Запишись в клуб'].map((step, index) => (
-          <motion.div
-            key={step}
-            className="rounded-3xl border border-brand-primary/10 bg-brand-surface p-5"
-            whileHover={{ y: -4 }}
-          >
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-cta-gradient text-white shadow-lg">
-              0{index + 1}
-            </div>
-            <p className="text-base font-semibold text-brand-dark">{step}</p>
-            <p className="text-sm text-muted">
-              {index === 0 && 'Ответь на 5 вопросов и посмотри процент попадания в роль.'}
-              {index === 1 && 'Листай карточки, открывай модалки с материалами и стартуй обучение.'}
-              {index === 2 && 'Выбери клуб в Бишкеке или онлайн. Кнопка “Присоединиться” показывает анимацию.'}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-      <div className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="rounded-[32px] border border-brand-primary/15 bg-white/90 p-6 shadow-lg">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted">Отзывы</p>
-          <div className="mt-4 flex snap-x gap-4 overflow-x-auto">
-            {testimonials.map((item) => (
-              <motion.div
-                key={item.id}
-                className="min-w-[240px] rounded-3xl border border-brand-primary/10 bg-brand-surface p-4"
-                whileHover={{ y: -4 }}
-              >
-                <div
-                  className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold text-brand-dark"
-                  style={{ background: item.avatarColor }}
-                >
-                  {item.name[0]}
-                </div>
-                <p className="text-sm italic text-muted">“{item.quote}”</p>
-                <p className="mt-3 text-sm font-semibold text-brand-dark">{item.name}</p>
-                <p className="text-xs uppercase tracking-[0.3em] text-muted">{item.role}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div className="rounded-[32px] border border-brand-primary/15 bg-brand-surface p-6 shadow-lg">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted">Команды</p>
-          <div className="mt-4 space-y-4">
-            {teamProfiles.slice(0, 2).map((team) => (
-              <div key={team.id} className="rounded-2xl border border-brand-primary/10 bg-white p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-base font-semibold text-brand-dark">{team.name}</p>
-                    <p className="text-xs uppercase tracking-[0.3em] text-muted">{team.focus}</p>
-                  </div>
-                  <span className="rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-semibold text-brand-primary">
-                    {team.status}
-                  </span>
-                </div>
-                <p className="mt-2 text-xs text-muted">Навыки: {team.skills.join(', ')}</p>
+        <SectionHeading
+          align="center"
+          eyebrow="онбординг за 3 шага"
+          title="Тест · Роадмап · Комьюнити"
+          description="Мобильный UX с плавными свайпами, поясняющими карточками и живыми анимациями дает ощущение настоящего приложения."
+        />
+        <div className="mt-10 flex snap-x gap-4 overflow-x-auto md:grid md:grid-cols-3 md:gap-6 md:overflow-visible">
+          {onboardingSteps.map((step, index) => (
+            <motion.div
+              key={step.title}
+              className="min-w-[240px] rounded-3xl border border-brand-primary/10 bg-brand-surface p-5 md:min-w-0"
+              whileHover={{ y: -4 }}
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-cta-gradient text-white shadow-lg">
+                0{index + 1}
               </div>
-            ))}
+              <p className="text-base font-semibold text-brand-dark">{step.title}</p>
+              <p className="text-sm text-muted">{step.description}</p>
+            </motion.div>
+          ))}
+        </div>
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="rounded-[32px] border border-brand-primary/15 bg-white/90 p-6 shadow-lg">
+            <p className="text-xs uppercase tracking-[0.3em] text-muted">Отзывы</p>
+            <div className="mt-4 flex snap-x gap-4 overflow-x-auto">
+              {testimonials.map((item) => (
+                <motion.div
+                  key={item.id}
+                  className="min-w-[240px] rounded-3xl border border-brand-primary/10 bg-brand-surface p-4"
+                  whileHover={{ y: -4 }}
+                >
+                  <div
+                    className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold text-brand-dark"
+                    style={{ background: item.avatarColor }}
+                  >
+                    {item.name[0]}
+                  </div>
+                  <p className="text-sm italic text-muted">“{item.quote}”</p>
+                  <p className="mt-3 text-sm font-semibold text-brand-dark">{item.name}</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-muted">{item.role}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[32px] border border-brand-primary/15 bg-brand-surface p-6 shadow-lg">
+            <p className="text-xs uppercase tracking-[0.3em] text-muted">Команды</p>
+            <div className="mt-4 space-y-4">
+              {teamProfiles.slice(0, 2).map((team) => (
+                <div key={team.id} className="rounded-2xl border border-brand-primary/10 bg-white p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-base font-semibold text-brand-dark">{team.name}</p>
+                      <p className="text-xs uppercase tracking-[0.3em] text-muted">{team.focus}</p>
+                    </div>
+                    <span className="rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-semibold text-brand-primary">
+                      {team.status}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-xs text-muted">Навыки: {team.skills.join(', ')}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );

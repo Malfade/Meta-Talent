@@ -21,3 +21,5 @@ const CoachTipCard = ({ title, description, badge, emphasis = 'neutral' }: Coach
 
 export default CoachTipCard;
 
+
+
